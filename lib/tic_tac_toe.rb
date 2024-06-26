@@ -21,8 +21,9 @@ class TicTacToe
   attr_accessor :board, :next_turn
 
   def take_coord
-    while check_combination == true
+    while includes_spaces? == true && check_combination == false
       coord = gets.chomp.to_i
+
       if next_turn == player1
         board[coord - 1] = "X"
         self.next_turn = player2
@@ -44,7 +45,29 @@ class TicTacToe
     puts "Enter a number where you want to place the letter."
   end
 
-  def check_combination
+  def includes_spaces?
     board.include?(" ")
+  end
+
+  def check_combination
+    if board.values_at(0, 1, 2).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(3, 4, 5).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(6, 7, 8).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(0, 3, 6).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(1, 4, 7).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(2, 5, 8).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(0, 4, 8).join.squeeze == ("X" || "O")
+      true
+    elsif board.values_at(2, 4, 6).join.squeeze == ("X" || "O")
+      true
+    else
+      false
+    end
   end
 end
