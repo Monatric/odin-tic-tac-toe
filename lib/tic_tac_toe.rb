@@ -22,10 +22,17 @@ class TicTacToe
   def take_coord
     while includes_spaces? == true && check_combination == false
       coord = gets.chomp
-      while coord.match?(/[1-9]/) == false
-        puts "That's not a number 1 to 9!"
-        coord = gets.chomp
+      loop do
+        if coord.match?(/[1-9]/) == false
+          puts "That's not a number 1 to 9!"
+          coord = gets.chomp
+        elsif board[coord.to_i - 1] == "X" || board[coord.to_i - 1] == "O"
+          puts "There's a letter already!"
+          coord = gets.chomp
+        end
+        break if coord.match?(/[1-9]/) == true && (board[coord.to_i - 1] != "X" && board[coord.to_i - 1] != "O")
       end
+      
 
       if next_turn == player1
         board[coord.to_i - 1] = "X"
