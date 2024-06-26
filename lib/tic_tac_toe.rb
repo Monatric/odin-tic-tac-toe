@@ -15,6 +15,12 @@ class TicTacToe
     take_coord
   end
 
+  
+
+  private
+
+  attr_accessor :board
+
   def take_coord
     coord = gets.chomp.to_i
     board[coord - 1] = "X"
@@ -30,8 +36,4 @@ class TicTacToe
     puts " #{board[6]} | #{board[7]} | #{board[8]}                  7 | 8 | 9 "
     puts "Enter a number where you want to place the letter."
   end
-
-  private
-
-  attr_accessor :board
 end
