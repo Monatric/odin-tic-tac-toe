@@ -4,7 +4,7 @@ class TicTacToe
     @is_game_finished = false
     @player1 = "Player 1"
     @player2 = "Player 2"
-    @next_turn = @player_1
+    @next_turn = player1
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
@@ -17,12 +17,19 @@ class TicTacToe
 
   private
 
-  attr_accessor :board
+  attr_reader :player1, :player2
+  attr_accessor :board, :next_turn
 
   def take_coord
     while check_combination == true
       coord = gets.chomp.to_i
-      board[coord - 1] = "X"
+      if next_turn == player1
+        board[coord - 1] = "X"
+        self.next_turn = player2
+      elsif next_turn == player2
+        board[coord - 1] = "O"
+        self.next_turn = player1
+      end
       state_of_the_board
     end
   end
