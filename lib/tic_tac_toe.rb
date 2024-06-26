@@ -10,7 +10,6 @@ class TicTacToe
 
   def start_game
     puts "The game has begun. It is Player 1's turn. Your letter is X."
-    puts "Enter a number where you want to place the letter."
     state_of_the_board
     take_coord
   end
@@ -46,7 +45,8 @@ class TicTacToe
     puts " #{board[3]} | #{board[4]} | #{board[5]}                  4 | 5 | 6 "
     puts "---|---|---                ---|---|---"
     puts " #{board[6]} | #{board[7]} | #{board[8]}                  7 | 8 | 9 "
-    puts "Enter a number where you want to place the letter."
+    puts " "
+    print "Enter a number where you want to place the letter: "
   end
 
   def includes_spaces?
