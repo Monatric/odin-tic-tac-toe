@@ -15,16 +15,16 @@ class TicTacToe
     take_coord
   end
 
-  
-
   private
 
   attr_accessor :board
 
   def take_coord
-    coord = gets.chomp.to_i
-    board[coord - 1] = "X"
-    state_of_the_board#p board
+    while check_combination == true
+      coord = gets.chomp.to_i
+      board[coord - 1] = "X"
+      state_of_the_board
+    end
   end
 
   def state_of_the_board
@@ -35,5 +35,9 @@ class TicTacToe
     puts "---|---|---                ---|---|---"
     puts " #{board[6]} | #{board[7]} | #{board[8]}                  7 | 8 | 9 "
     puts "Enter a number where you want to place the letter."
+  end
+
+  def check_combination
+    board.include?(" ")
   end
 end
