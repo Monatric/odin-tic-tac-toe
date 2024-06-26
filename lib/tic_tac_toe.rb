@@ -36,6 +36,8 @@ class TicTacToe
       end
       state_of_the_board
     end
+    winner = next_turn == player1 ? "Player 2!" : "Player 1"
+    puts "\nThe winner is #{winner}"
   end
 
   def state_of_the_board
