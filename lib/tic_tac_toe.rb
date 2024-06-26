@@ -17,7 +17,7 @@ class TicTacToe
 
   def take_coord
     coord = gets.chomp.to_i
-    board[coord] = "X"
+    board[coord - 1] = "X"
     state_of_the_board#p board
   end
 
