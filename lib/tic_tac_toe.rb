@@ -1,5 +1,18 @@
+require "pry-byebug"
+
 # insert class description
 class TicTacToe
+  WIN_COMBI = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+
   def initialize
     @is_game_finished = false
     @player1 = "Player 1"
@@ -20,7 +33,7 @@ class TicTacToe
   attr_accessor :board, :next_turn
 
   def take_coord
-    while includes_spaces? == true && check_combination == false
+    while includes_spaces? == true && player_has_won? == false
       if next_turn == player1
         board[take_user_input - 1] = "X"
         self.next_turn = player2
@@ -34,10 +47,11 @@ class TicTacToe
   end
 
   def announce_winner
-    if check_combination == true
+    if player_has_won? == true
       winner = next_turn == player1 ? "Player 2!" : "Player 1"
       puts "\nThe winner is #{winner}"
     else
+      #binding.pry
       puts "It's a tie!"
     end
   end
@@ -73,24 +87,10 @@ class TicTacToe
   end
 
   def check_combination
-    if board.values_at(0, 1, 2).join.squeeze == "X" || board.values_at(0, 1, 2).join.squeeze == "O"
-      true
-    elsif board.values_at(3, 4, 5).join.squeeze == "X" || board.values_at(3, 4, 5).join.squeeze == "O"
-      true
-    elsif board.values_at(6, 7, 8).join.squeeze == "X" || board.values_at(6, 7, 8).join.squeeze == "O"
-      true
-    elsif board.values_at(0, 3, 6).join.squeeze == "X" || board.values_at(0, 3, 6).join.squeeze == "O"
-      true
-    elsif board.values_at(1, 4, 7).join.squeeze == "X" || board.values_at(1, 4, 7).join.squeeze == "O"
-      true
-    elsif board.values_at(2, 5, 8).join.squeeze == "X" || board.values_at(2, 5, 8).join.squeeze == "O"
-      true
-    elsif board.values_at(0, 4, 8).join.squeeze == "X" || board.values_at(0, 4, 8).join.squeeze == "O"
-      true
-    elsif board.values_at(2, 4, 6).join.squeeze == "X" || board.values_at(2, 4, 6).join.squeeze == "O"
-      true
-    else
-      false
-    end
+    WIN_COMBI.map { |e| board.values_at(e[0], e[1], e[2]).join.squeeze }
+  end
+
+  def player_has_won?
+    check_combination.any? { |e| %w[X O].include?(e) }
   end
 end
