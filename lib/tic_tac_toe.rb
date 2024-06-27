@@ -24,7 +24,7 @@ class TicTacToe
   def start_game
     puts "The game has begun. It is Player 1's turn. Your letter is X."
     state_of_the_board
-    take_coord
+    place_letter
   end
 
   private
@@ -32,7 +32,7 @@ class TicTacToe
   attr_reader :player1, :player2
   attr_accessor :board, :next_turn
 
-  def take_coord
+  def place_letter
     while includes_spaces? == true && player_has_won? == false
       if next_turn == player1
         board[take_user_input - 1] = "X"
