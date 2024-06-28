@@ -1,4 +1,5 @@
 require "pry-byebug"
+require "colorize"
 
 # insert class description
 class TicTacToe
@@ -22,7 +23,6 @@ class TicTacToe
   end
 
   def start_game
-    puts "The game has begun. It is Player 1's turn. Your letter is X."
     state_of_the_board
     place_letter
   end
@@ -42,10 +42,10 @@ class TicTacToe
 
   def check_next_turn
     if next_turn == player1
-      board[take_user_input - 1] = "X"
+      board[take_user_input - 1] = "X".colorize(:red)
       self.next_turn = player2
     elsif next_turn == player2
-      board[take_user_input - 1] = "O"
+      board[take_user_input - 1] = "O".colorize(:blue)
       self.next_turn = player1
     end
   end
@@ -91,6 +91,7 @@ class TicTacToe
         print "\t\t 7 | 8 | 9\n"
       end
     end
+    puts "The game has begun. It is #{next_turn}'s turn."
   end
 
   def includes_spaces?
