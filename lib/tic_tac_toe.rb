@@ -54,24 +54,31 @@ class TicTacToe
       winner = next_turn == player1 ? "Player 2!" : "Player 1"
       puts "\nThe winner is #{winner}"
     else
-      #binding.pry
       puts "It's a tie!"
     end
   end
 
   def take_user_input
-    coord = gets.chomp
-    loop do
-      if coord.match?(/[1-9]/) == false
-        puts "That's not a number 1 to 9!"
-        coord = gets.chomp
-      elsif board[coord.to_i - 1] == "X" || board[coord.to_i - 1] == "O"
+    user_input_valid = false
+    while user_input_valid == false
+      coord = gets.chomp
+      if letter_exists?(coord) == true
         puts "There's a letter already!"
-        coord = gets.chomp
+      elsif one_to_nine?(coord) == false
+        puts "That's not a number 1 to 9!"
+      else
+        user_input_valid = true
       end
-      break if coord.match?(/[1-9]/) == true && (board[coord.to_i - 1] != "X" && board[coord.to_i - 1] != "O")
     end
     coord.to_i
+  end
+
+  def letter_exists?(coord)
+    board[coord.to_i - 1] != " "
+  end
+
+  def one_to_nine?(coord)
+    coord.match?(/[1-9]/)
   end
 
   def state_of_the_board
