@@ -11,7 +11,7 @@ class TicTacToe
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]
-  ]
+  ].freeze
 
   def initialize
     @is_game_finished = false
