@@ -72,14 +72,21 @@ class TicTacToe
   end
 
   def state_of_the_board
-    puts "The current board             Guide"
-    puts " #{board[0]} | #{board[1]} | #{board[2]}                  1 | 2 | 3 "
-    puts "---|---|---                ---|---|---"
-    puts " #{board[3]} | #{board[4]} | #{board[5]}                  4 | 5 | 6 "
-    puts "---|---|---                ---|---|---"
-    puts " #{board[6]} | #{board[7]} | #{board[8]}                  7 | 8 | 9 "
-    puts " "
-    print "Enter a number where you want to place the letter: "
+    puts "The current board\t   Guide"
+    9.times do |num|
+      print " #{board[num]} "
+      print "|" if num != 2 && num != 5 && num != 8
+      case num
+      when 2
+        print "\t\t 1 | 2 | 3\n"
+        puts "---|---|---\t\t---|---|---"
+      when 5
+        print "\t\t 4 | 5 | 6\n"
+        puts "---|---|---\t\t---|---|---"
+      when 8
+        print "\t\t 7 | 8 | 9\n"
+      end
+    end
   end
 
   def includes_spaces?
