@@ -72,18 +72,36 @@ inside the main.rb
   instantiate the game
   then run it (call)
 
-test3.values_at(0,1,2).join.squeeze == "X"
+for cleaning check_combination
+  make a constant array with all those combinations in their own array too
+  map that array, putting its values in #values_at, join, then squeeze
+  this will be ran repeatedly, checking
 
+  or wait
+  take the array of board
+  check the values at the board by iterating on the combination and getting all its indices
+  join and then squeeze
+  that new array will be iterated too to check if theres an X or O
+    so
+    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    win_combi =  [
+      [0, 1, 2], 
+      [3, 4, 5], 
+      [6, 7, 8], 
+      [0, 3, 6], 
+      [1, 4, 7], 
+      [2, 5, 8], 
+      [0, 4, 8], 
+      [2, 4, 6]
+      ]
+    
+    win_combi.map { |e| board.values_at(e[0], e[1], e[2]).join.squeeze }
+    then its return value.each { |e| e == "X" || e == "O" }
 
-
-irb(main):074* sample = case
-irb(main):075* when test3.values_at(0,1,2).join.squeeze ==  "X"
-irb(main):076*   puts "WIN"
-irb(main):077* else
-irb(main):078*   puts "what"
-irb(main):079> end
-
-
+for cleaning state_of_the_board
+  iterate over  the board array
+  so
+    board.each 
 
 ###
 or
