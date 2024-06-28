@@ -1,5 +1,4 @@
 require "pry-byebug"
-require "colorize"
 
 # insert class description
 class TicTacToe
@@ -42,10 +41,10 @@ class TicTacToe
 
   def check_next_turn
     if next_turn == player1
-      board[take_user_input - 1] = "X".colorize(:red)
+      board[take_user_input - 1] = "X"
       self.next_turn = player2
     elsif next_turn == player2
-      board[take_user_input - 1] = "O".colorize(:blue)
+      board[take_user_input - 1] = "O"
       self.next_turn = player1
     end
   end
