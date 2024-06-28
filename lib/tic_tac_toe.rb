@@ -34,16 +34,20 @@ class TicTacToe
 
   def place_letter
     while includes_spaces? == true && player_has_won? == false
-      if next_turn == player1
-        board[take_user_input - 1] = "X"
-        self.next_turn = player2
-      elsif next_turn == player2
-        board[take_user_input - 1] = "O"
-        self.next_turn = player1
-      end
+      check_next_turn
       state_of_the_board
     end
     announce_winner
+  end
+
+  def check_next_turn
+    if next_turn == player1
+      board[take_user_input - 1] = "X"
+      self.next_turn = player2
+    elsif next_turn == player2
+      board[take_user_input - 1] = "O"
+      self.next_turn = player1
+    end
   end
 
   def announce_winner
