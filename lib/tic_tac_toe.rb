@@ -105,6 +105,9 @@ class TicTacToe
   end
 
   def check_combination
+    # WIN_COMBI's 'e' acts as the index value for the board
+    # #values_at takes these indices to find all possible combinations
+    # join them and squeeze them to see if a letter consistently makes three
     WIN_COMBI.map { |e| board.values_at(e[0], e[1], e[2]).join.squeeze }
   end
 
