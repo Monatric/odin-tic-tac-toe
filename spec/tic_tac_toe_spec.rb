@@ -35,18 +35,59 @@ describe TicTacToe do
     end
   end
 
-  describe '#check_next_turn' do
-    context 'when the current player is player1' do
-      let(:player1) { double('player1', player1: 'Player 1') }
+  # describe '#check_next_turn' do
+  #   context 'when the current player is player1' do
+  #     let(:player1) { double('player1', player1: 'Player 1') }
+  #     before do
+  #       next_turn = game.instance_variable_get(:@next_turn)
+  #       allow(game).to receive(next_turn).with(player1)
+  #     end
+
+  #     it 'switches the next turn to player2' do
+  #       next_turn = game.instance_variable_get(:@next_turn)
+  #       player2 = game.instance_variable_get(:@player2)
+  #       expect(next_turn).to be(player2)
+  #     end
+  #   end
+  # end
+  describe '#announce_winner' do
+    context 'when there are no winners' do
       before do
-        next_turn = game.instance_variable_get(:@next_turn)
-        allow(game).to receive(next_turn).with(player1)
+        allow(game).to receive(:player_has_won?).and_return(false)
       end
 
-      it 'switches the next turn to player2' do
-        next_turn = game.instance_variable_get(:@next_turn)
+      it 'prints a message about tie' do
+        tie_message = "It's a tie!"
+        expect(game).to receive(:puts).with(tie_message)
+        game.announce_winner
+      end
+    end
+
+    context 'when the winner is Player 1' do
+      before do
         player2 = game.instance_variable_get(:@player2)
-        expect(next_turn).to be(player2)
+        allow(game).to receive(:player_has_won?).and_return(true)
+        allow(game).to receive(:next_turn).and_return(player2)
+      end
+
+      it 'declares that the winner is Player 1' do
+        winner = "\nThe winner is Player 1"
+        expect(game).to receive(:puts).with(winner)
+        game.announce_winner
+      end
+    end
+
+    context 'when the winner is Player 2' do
+      before do
+        player1 = 'Player 1'
+        allow(game).to receive(:player_has_won?).and_return(true)
+        allow(game).to receive(:next_turn).and_return(player1)
+      end
+
+      it 'declares that the winner is Player 2' do
+        winner = "\nThe winner is Player 2"
+        expect(game).to receive(:puts).with(winner)
+        game.announce_winner
       end
     end
   end

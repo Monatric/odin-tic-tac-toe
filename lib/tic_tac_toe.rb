@@ -1,4 +1,4 @@
-require "pry-byebug"
+require 'pry-byebug'
 
 # insert class description
 class TicTacToe
@@ -15,10 +15,10 @@ class TicTacToe
 
   def initialize
     @is_game_finished = false
-    @player1 = "Player 1"
-    @player2 = "Player 2"
+    @player1 = 'Player 1'
+    @player2 = 'Player 2'
     @next_turn = player1
-    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
   def start_game
@@ -39,17 +39,17 @@ class TicTacToe
 
   def check_next_turn
     if next_turn == player1
-      board[take_user_input - 1] = "X"
+      board[take_user_input - 1] = 'X'
       self.next_turn = player2
     elsif next_turn == player2
-      board[take_user_input - 1] = "O"
+      board[take_user_input - 1] = 'O'
       self.next_turn = player1
     end
   end
 
   def announce_winner
     if player_has_won? == true
-      winner = next_turn == player1 ? "Player 2!" : "Player 1"
+      winner = next_turn == player1 ? 'Player 2' : 'Player 1'
       puts "\nThe winner is #{winner}"
     else
       puts "It's a tie!"
@@ -72,7 +72,7 @@ class TicTacToe
   end
 
   def letter_exists?(coord)
-    board[coord.to_i - 1] != " "
+    board[coord.to_i - 1] != ' '
   end
 
   def one_to_nine?(coord)
@@ -83,7 +83,7 @@ class TicTacToe
     puts "The current board\t   Guide"
     9.times do |num|
       print " #{board[num]} "
-      print "|" if num != 2 && num != 5 && num != 8
+      print '|' if num != 2 && num != 5 && num != 8
       case num
       when 2
         print "\t\t 1 | 2 | 3\n"
@@ -99,7 +99,7 @@ class TicTacToe
   end
 
   def includes_spaces?
-    board.include?(" ")
+    board.include?(' ')
   end
 
   def check_combination
