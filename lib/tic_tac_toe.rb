@@ -97,7 +97,7 @@ class TicTacToe
         print "\t\t 7 | 8 | 9\n"
       end
     end
-    puts "The game has begun. It is #{next_turn}'s turn."
+    puts "It is #{next_turn}'s turn." unless player_has_won?
   end
 
   def includes_spaces?
