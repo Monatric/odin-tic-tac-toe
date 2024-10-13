@@ -26,8 +26,6 @@ class TicTacToe
     place_letter
   end
 
-  private
-
   attr_reader :player1, :player2
   attr_accessor :board, :next_turn
 
@@ -112,6 +110,7 @@ class TicTacToe
   end
 
   def player_has_won?
+    # p(check_combination)
     check_combination.any? { |e| %w[X O].include?(e) }
   end
 end
