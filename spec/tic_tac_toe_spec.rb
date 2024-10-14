@@ -36,8 +36,9 @@ describe TicTacToe do
 
   describe '#check_next_turn' do
     context 'when the current player is player1' do
+      let(:valid_input) { 5 }
       before do
-        allow(game).to receive(:take_user_input).and_return(5)
+        allow(game).to receive(:take_user_input).and_return(valid_input)
       end
 
       it 'switches the next turn to player2' do
@@ -45,11 +46,18 @@ describe TicTacToe do
         game.check_next_turn
         expect(game.next_turn).to be(player2)
       end
+
+      it 'updates the board' do
+        game.check_next_turn
+        expect(game.board[valid_input - 1]).to eq('X')
+      end
     end
 
     context 'when the current player is player2' do
+      let(:valid_input) { 3 }
+
       before do
-        allow(game).to receive(:take_user_input).and_return(5)
+        allow(game).to receive(:take_user_input).and_return(valid_input)
       end
 
       it 'switches the next turn to player1' do
@@ -57,6 +65,12 @@ describe TicTacToe do
         game.instance_variable_set(:@next_turn, 'Player 2')
         game.check_next_turn
         expect(game.next_turn).to be(player1)
+      end
+
+      it 'updates the board' do
+        game.instance_variable_set(:@next_turn, 'Player 2')
+        game.check_next_turn
+        expect(game.board[valid_input - 1]).to eq('O')
       end
     end
   end
