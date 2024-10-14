@@ -173,4 +173,20 @@ describe TicTacToe do
       expect(game).to_not be_includes_spaces
     end
   end
+
+  describe '#check_combination' do
+    # not sure how to test this or if I need to anyway
+  end
+
+  describe '#state_of_the_board' do
+    # no need for tests because it's just for displaying
+  end
+
+  describe '#place_letter' do
+    # no need for tests because what  was it called? a public script method
+  end
+
+  describe '#start_game' do
+    # same issue for #place_letter
+  end
 end
