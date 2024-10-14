@@ -35,21 +35,33 @@ describe TicTacToe do
     end
   end
 
-  # describe '#check_next_turn' do
-  #   context 'when the current player is player1' do
-  #     let(:player1) { double('player1', player1: 'Player 1') }
-  #     before do
-  #       next_turn = game.instance_variable_get(:@next_turn)
-  #       allow(game).to receive(next_turn).with(player1)
-  #     end
+  describe '#check_next_turn' do
+    context 'when the current player is player1' do
+      before do
+        allow(game).to receive(:take_user_input).and_return(5)
+      end
 
-  #     it 'switches the next turn to player2' do
-  #       next_turn = game.instance_variable_get(:@next_turn)
-  #       player2 = game.instance_variable_get(:@player2)
-  #       expect(next_turn).to be(player2)
-  #     end
-  #   end
-  # end
+      it 'switches the next turn to player2' do
+        player2 = game.instance_variable_get(:@player2)
+        game.check_next_turn
+        expect(game.next_turn).to be(player2)
+      end
+    end
+
+    context 'when the current player is player2' do
+      before do
+        allow(game).to receive(:take_user_input).and_return(5)
+      end
+
+      it 'switches the next turn to player1' do
+        player1 = game.instance_variable_get(:@player1)
+        game.instance_variable_set(:@next_turn, 'Player 2')
+        game.check_next_turn
+        expect(game.next_turn).to be(player1)
+      end
+    end
+  end
+
   describe '#announce_winner' do
     context 'when there are no winners' do
       before do
