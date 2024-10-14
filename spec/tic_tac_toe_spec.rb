@@ -1,5 +1,4 @@
 require_relative '../lib/tic_tac_toe'
-# when the #check_combination's array contains a value \"X\" (save for later)
 
 describe TicTacToe do
   subject(:game) { described_class.new }
@@ -129,6 +128,30 @@ describe TicTacToe do
         # the coord 1 is essentially index 0 because of subtraction
         coord = 1
         result = game.letter_exists?(coord)
+        expect(result).to be false
+      end
+    end
+  end
+
+  describe '#one_to_nine?' do
+    context 'when the choice is within 1-9' do
+      it 'returns true' do
+        choice = '7'
+        result = game.one_to_nine?(choice)
+        expect(result).to be true
+      end
+    end
+
+    context 'when the choice is not within 1-9' do
+      it 'returns false for numbers over 9' do
+        choice = '12'
+        result = game.one_to_nine?(choice)
+        expect(result).to be false
+      end
+
+      it 'returns false for numbers less than 1' do
+        choice = '-5'
+        result = game.one_to_nine?(choice)
         expect(result).to be false
       end
     end

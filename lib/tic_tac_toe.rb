@@ -76,7 +76,7 @@ class TicTacToe
   end
 
   def one_to_nine?(coord)
-    coord.match?(/[1-9]/)
+    coord.match?(/\A[1-9]\z/)
   end
 
   def state_of_the_board
