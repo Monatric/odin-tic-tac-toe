@@ -168,7 +168,7 @@ describe TicTacToe do
       expect(game).to be_includes_spaces
     end
 
-    it 'returns true if the board is full of letters' do
+    it 'returns false if the board is full of letters' do
       game.instance_variable_set(:@board, %w[X X X])
       expect(game).to_not be_includes_spaces
     end
