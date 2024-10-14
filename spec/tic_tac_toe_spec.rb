@@ -156,4 +156,21 @@ describe TicTacToe do
       end
     end
   end
+
+  describe '#includes_spaces?' do
+    it 'returns true if there are spaces in the board' do
+      game.instance_variable_set(:@board, [' ', ' ', ' '])
+      expect(game).to be_includes_spaces
+    end
+
+    it 'returns true if there are spaces and letters in the board' do
+      game.instance_variable_set(:@board, [' ', 'X', ' '])
+      expect(game).to be_includes_spaces
+    end
+
+    it 'returns true if the board is full of letters' do
+      game.instance_variable_set(:@board, %w[X X X])
+      expect(game).to_not be_includes_spaces
+    end
+  end
 end
