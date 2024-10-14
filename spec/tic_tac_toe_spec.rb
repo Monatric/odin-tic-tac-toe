@@ -103,4 +103,34 @@ describe TicTacToe do
       end
     end
   end
+
+  describe '#letter_exists?' do
+    context 'when a chosen spot has a letter' do
+      before do
+        board = game.board
+        board[0] = 'X'
+      end
+
+      it 'returns true' do
+        # the coord 1 is essentially index 0 because of subtraction
+        coord = 1
+        result = game.letter_exists?(coord)
+        expect(result).to be true
+      end
+    end
+
+    context 'when a chosen spot does not have a letter' do
+      before do
+        board = game.board
+        board[0] = ' '
+      end
+
+      it 'returns false' do
+        # the coord 1 is essentially index 0 because of subtraction
+        coord = 1
+        result = game.letter_exists?(coord)
+        expect(result).to be false
+      end
+    end
+  end
 end
