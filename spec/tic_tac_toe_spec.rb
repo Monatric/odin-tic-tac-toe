@@ -75,6 +75,32 @@ describe TicTacToe do
     end
   end
 
+  describe '#take_user_input' do
+    context 'when a user chooses a spot that contains a letter once, then a valid input' do
+      let(:invalid_choice) { '1' }
+      let(:valid_choice) { '2' }
+
+      before do
+        board = game.board
+
+        board[0] = 'X'
+        board[1] = ' '
+        allow(game).to receive(:gets).and_return(invalid_choice, valid_choice)
+      end
+
+      it 'completes loop and displays that there is a letter already once' do
+        error_msg = "There's a letter already!"
+
+        expect(game).to receive(:puts).with(error_msg).once
+        game.take_user_input
+      end
+
+      it 'completes loop and returns a sanitized input' do
+        expect(game.take_user_input).to eq(valid_choice.to_i)
+      end
+    end
+  end
+
   describe '#announce_winner' do
     context 'when there are no winners' do
       before do
