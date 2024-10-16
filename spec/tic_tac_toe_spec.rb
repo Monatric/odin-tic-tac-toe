@@ -99,6 +99,25 @@ describe TicTacToe do
         expect(game.take_user_input).to eq(valid_choice.to_i)
       end
     end
+
+    context 'when a user input is not between 1 to 9 first, then between 1 to 9 second' do
+      let(:invalid_choice) { '0' }
+      let(:valid_choice) { '3' }
+
+      before do
+        allow(game).to receive(:gets).and_return(invalid_choice, valid_choice)
+      end
+
+      it 'completes loop and displays an error message not being one to nine' do
+        error_msg = "That's not a number 1 to 9!"
+        expect(game).to receive(:puts).with(error_msg).once
+        game.take_user_input
+      end
+
+      it 'completes loop and returns a sanitized input' do
+        expect(game.take_user_input).to eq(valid_choice.to_i)
+      end
+    end
   end
 
   describe '#announce_winner' do
