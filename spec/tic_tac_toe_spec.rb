@@ -5,7 +5,9 @@ describe TicTacToe do
   describe '#player_has_won?' do
     context 'when the board shows a straight three X' do
       before do
-        allow(game).to receive(:check_combination).and_return(['X'])
+        game.instance_variable_set(:@board, ['X', 'X', 'X',
+                                             'O', 'O', ' ',
+                                             ' ', ' ', ' '])
       end
       it 'returns true' do
         result = game.player_has_won?
@@ -15,7 +17,9 @@ describe TicTacToe do
 
     context 'when the board shows a straight three O' do
       before do
-        allow(game).to receive(:check_combination).and_return(['O'])
+        game.instance_variable_set(:@board, ['X', 'X', 'O',
+                                             'O', 'O', 'X',
+                                             'O', 'X', ' '])
       end
       it 'returns true' do
         result = game.player_has_won?
@@ -25,7 +29,9 @@ describe TicTacToe do
 
     context 'when the board does not have straight three letters' do
       before do
-        allow(game).to receive(:check_combination).and_return([' '])
+        game.instance_variable_set(:@board, %w[X X O
+                                               O O X
+                                               X X O])
       end
       it 'returns false' do
         result = game.player_has_won?
